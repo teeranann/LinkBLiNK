@@ -1,0 +1,45 @@
+{
+  "scenario": "B",
+  "A_index": 0,
+  "B_index": 1,
+  "Decoy_index": 2,
+  "link_radius_pixels": 6.0,
+  "gap_start_frame": 167,
+  "gap_end_frame": 168,
+  "gap_length_frames": 1,
+  "pred_gap_end_pixels": [
+    40.48529073954876,
+    68.71311581774354
+  ],
+  "decoy_spawn_pixels": [
+    40.84127044436658,
+    69.63575294580482
+  ],
+  "decoy_offset_pixels": [
+    0.3559797048178197,
+    0.9226371280612824
+  ],
+  "decoy_follow_predict_frames": 5,
+  "signatures": {
+    "A": {
+      "intensity0": 24294.17131921392,
+      "sigma": 1.3720281107505214,
+      "ellip_bias": 0.9880434392301464
+    },
+    "B": {
+      "intensity0": 10612.98969471683,
+      "sigma": 1.7617697891613393,
+      "ellip_bias": 1.0272585163253862
+    },
+    "Decoy": {
+      "intensity0": 6559.4262561877595,
+      "sigma": 2.881259032576095,
+      "ellip_bias": 1.4326629868837122
+    }
+  },
+  "motion": {
+    "jitter_scale": 0.436497700517964,
+    "vel_rho": 0.8904895402301509,
+    "step_std_pixels": 0.5042567670001764
+  }
+}

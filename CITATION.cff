@@ -1,0 +1,66 @@
+cff-version: 1.2.0
+message: "If you use LinkBLiNK Tracker, please cite the manuscript below."
+type: software
+title: "LinkBLiNK Tracker"
+abstract: >-
+  Machine learning-assisted trajectory reconstruction for single-molecule
+  localization microscopy (SMLM), combining a U-Net for segmentation,
+  a Siamese network for appearance embedding, nearest-neighbor linking,
+  and a Random Forest Judge for reconnection decisions.
+# Software authors, listed inventors first, then co-inventors.
+authors:
+  - family-names: Nongnual
+    given-names: Teeranan
+    affiliation: "Burapha University"
+    email: teeranan.no@buu.ac.th
+  - family-names: Saelee
+    given-names: Kanoksak
+    affiliation: "Burapha University"
+  - family-names: Pooldee
+    given-names: Papichaya
+    affiliation: "Burapha University"
+  - family-names: Buathong
+    given-names: Sitti
+    affiliation: "Burapha University"
+  - family-names: Kaewpirom
+    given-names: Supranee
+    affiliation: "Burapha University"
+license: MIT
+copyright: >-
+  (c) 2025-2026 Burapha University. Registered copyrighted work in Thailand,
+  Copyright Application No. 465770, filed 19 December 2025 with the
+  Department of Intellectual Property. Inventors: Teeranan Nongnual and
+  Kanoksak Saelee. Co-inventors: Papichaya Pooldee, Sitti Buathong, and
+  Supranee Kaewpirom.
+identifiers:
+  - type: other
+    value: "TH-Copyright-465770"
+    description: "Thai Copyright Application No. 465770 (19 December 2025)"
+repository-code: "https://github.com/teeranann/LinkBLiNK"
+keywords:
+  - single-molecule localization microscopy
+  - single-particle tracking
+  - deep learning
+  - U-Net
+  - Siamese network
+  - Random Forest
+  - trajectory linking
+  - photoblinking
+preferred-citation:
+  type: article
+  title: >-
+    LinkBLiNK Tracker: Machine Learning-Assisted Trajectory
+    Reconstruction for Single-Molecule Localization Microscopy
+  authors:
+    - family-names: Saelee
+      given-names: Kanoksak
+    - family-names: Pooldee
+      given-names: Papichaya
+    - family-names: Buathong
+      given-names: Sitti
+    - family-names: Kaewpirom
+      given-names: Supranee
+    - family-names: Nongnual
+      given-names: Teeranan
+  year: 2026
+  journal: "(manuscript in preparation)"

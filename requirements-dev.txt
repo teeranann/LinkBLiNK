@@ -1,0 +1,6 @@
+# Extra dependencies needed only to retrain models or run the simulator.
+
+-r requirements.txt
+
+tensorboard>=2.16
+pyyaml>=6.0
