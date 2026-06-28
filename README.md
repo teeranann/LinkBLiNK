@@ -1,6 +1,6 @@
 # LinkBLiNK Tracker
 
-[![DOI](https://zenodo.org/badge/DOI/10.5281/zenodo.20806665.svg)](https://doi.org/10.5281/zenodo.20806665)
+[![DOI](https://zenodo.org/badge/DOI/10.5281/zenodo.20806664.svg)](https://doi.org/10.5281/zenodo.20806664)
 [![License: MIT](https://img.shields.io/badge/License-MIT-yellow.svg)](LICENSE)
 
 **Linking Blinking Localizations in Nanoscopic Kinetics Tracker**, a
@@ -110,6 +110,7 @@ LinkBLiNK/
 │   └── random_forest/       Random Forest Judge training
 ├── benchmark/               TrackMate-based baseline benchmarks (Fiji/Jython)
 ├── simulator/               Scenario A and Scenario B video synthesis
+├── preprocessing/           data preparation (masks, defocus filter, pairs)
 ├── requirements.txt
 ├── requirements-dev.txt
 ├── LICENSE
@@ -123,9 +124,19 @@ and are ignored by git.
 
 ## Reproducing the paper benchmarks
 
-1. Generate simulated videos for Scenario A and Scenario B with the
-   scripts in `simulator/`. Adjust the difficulty parameters in the
-   script header to sweep the full A1–A7, B1–B8, BI/BP/BE/BX grids.
+1. Generate simulated videos with the config-driven scripts in
+   `simulator/` (`VideoSynthesis_ScenarioA_withGTMask.py`,
+   `VideoSynthesis_ScenarioB_withGTMask.py`). Set the output/background
+   paths and `NUM_VIDEOS_TO_GENERATE` (100 in the paper) at the top of
+   each script. Each difficulty level is one group of constants — e.g.
+   `SCENARIO_A_CLOSE_PASS_DISTANCE_PIXELS` for Scenario A (A1–A7), the
+   decoy intensity/PSF/ellipticity for Scenario B (B1–B8) and the
+   BI/BP/BE decomposition, and `SCENARIO_B_GAP_LENGTH_RANGE` for the BX
+   duration series. The exact values for every level are tabulated in
+   Supplementary Tables S2–S5. Acquisition constants already match the
+   paper (`PIXEL_SIZE_UM = 0.0359`, `NUM_FRAMES = 500`, `BIT_DEPTH = 16`).
+   Each video is written with its 16-bit TIFF frames, the ground-truth
+   trajectory table, and (Scenario B) the ground-truth U-Net masks.
 2. Run the baseline trackers (Crocker-Grier via TrackPy, Simple LAP
    and full LAP via Fiji TrackMate) on each video. Detection and
    tracking templates are in `benchmark/`. These scripts run inside
@@ -135,6 +146,20 @@ and are ignored by git.
 4. Aggregate the per-condition metrics (fragmentation rate, false
    linkage rate, completeness, association precision/recall/F1) and
    compare across methods.
+
+## Data preparation
+
+The scripts in `preprocessing/` turn raw frames and trajectories into the
+exact inputs used to train each module. Paths are set in the configuration
+block at the top of each script.
+
+| Script | Role |
+|--------|------|
+| `ParticleMaskGeneration.m` | Interactive labelling: click particles and fit a 2-D Gaussian to generate the binary U-Net training masks (MATLAB; Optimization Toolbox required). |
+| `DefocusingFilter.py` | Removes out-of-focus detections from the U-Net masks by Gaussian-fit quality, producing the `filtered_masks/`. |
+| `SiameseDataPrep_Batch.py` | Crops particle patches and builds the same/different pairs used to train the Siamese appearance embedding. |
+| `RandomForestGen.py` | Builds the positive/negative fragment pairs used to train the Random Forest Judge. |
+| `id_corrector.py` | Aligns predicted trajectory IDs to the ground truth (Hungarian assignment) for evaluation. |
 
 ## Retraining
 

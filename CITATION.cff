@@ -34,12 +34,12 @@ copyright: >-
   Supranee Kaewpirom.
 identifiers:
   - type: doi
-    value: "10.5281/zenodo.20806665"
-    description: "Zenodo archive of the software (v1.0.1)"
+    value: "10.5281/zenodo.20806664"
+    description: "Zenodo concept DOI (all versions; resolves to the latest release)"
   - type: other
     value: "TH-Copyright-465770"
     description: "Thai Copyright Application No. 465770 (19 December 2025)"
-doi: "10.5281/zenodo.20806665"
+doi: "10.5281/zenodo.20806664"
 repository-code: "https://github.com/teeranann/LinkBLiNK"
 keywords:
   - single-molecule localization microscopy
