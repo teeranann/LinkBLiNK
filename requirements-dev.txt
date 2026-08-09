@@ -1,6 +1,11 @@
-# Extra dependencies needed only to retrain models or run the simulator.
+# Extra dependencies needed only to run the tests, retrain models,
+# prepare training data, or regenerate the simulated benchmark videos.
+# The runtime pipeline needs requirements.txt alone.
 
 -r requirements.txt
 
-tensorboard>=2.16
-pyyaml>=6.0
+pytest>=8.0            # tests/  (python -m pytest tests -q)
+tensorboard>=2.16      # training/unet
+torchvision>=0.15      # training/unet (transforms)
+tifffile>=2023.7       # simulator/ video synthesis
+scikit-image>=0.21     # preprocessing/SiameseDataPrep_Batch.py

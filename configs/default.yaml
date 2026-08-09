@@ -1,0 +1,92 @@
+# LinkBLiNK configuration.
+#
+# Every key is optional — anything omitted keeps the default from
+# linkblink/config.py. Relative paths resolve against the project root
+# (the folder containing run.py). Unknown keys raise an error rather than
+# being silently ignored, so a typo fails loudly.
+#
+# The values below reproduce the published results.
+
+paths:
+  input_dir: data/input
+  ground_truth_dir: data/ground_truth
+  temp_frames_dir: outputs/temp_frames
+  unet_masks_dir: outputs/unet_masks
+  filtered_masks_dir: outputs/filtered_masks
+  results_dir: outputs/results
+  checkpoints_dir: checkpoints
+  matlab_scripts_dir: matlab_scripts
+
+run:
+  batch_mode: true                  # false = pick a single video via GUI
+  clean_previous_run_data: false    # delete this video's old outputs first
+  evaluate_tracking_performance: false
+  ground_truth_filename_pattern: _ground_truth.csv
+  evaluation_distance_threshold_px: 3.0
+
+# Reuse masks already on disk instead of re-running the U-Net.
+mask_cache:
+  enabled: false
+  glob: "*_predict_mask.png"
+  require_full_match: true
+
+# Only used for .seq input; TIFF input never touches MATLAB.
+matlab:
+  exe_path: C:\Program Files\MATLAB\R2021b\bin\matlab.exe
+  seq_to_tif_script: seq_to_tif.m
+  timeout_s: 300
+
+# Stage 2 — detection.
+unet:
+  model_path: checkpoints/R2G3B3.pth
+  threshold: 0.5
+  # Must match the statistics used when R2G3B3.pth was trained.
+  norm_mean: 0.021386
+  norm_std: 0.0230073
+  save_debug_images: false
+
+# Stage 3 — defocusing filter. With `disabled: true` every detection is kept
+# but all the criteria below are still measured into the output CSV.
+filtering:
+  disabled: true
+  min_particle_area: 10
+  max_particle_area: 1000
+  aspect_ratio_min: 0.5
+  aspect_ratio_max: 2.5
+  extent_min: 0.6
+  max_eccentricity: 0.9
+  laplacian_var_threshold: 1.0
+  max_gaussian_residual_sum: 100000.0
+  max_gaussian_sigma_aspect_ratio: 2.5
+
+siamese:
+  model_path: checkpoints/S1.pth
+  patch_size: 32                    # must match the checkpoint
+
+# Stage 4a — frame-to-frame linking.
+linking:
+  search_range_px: 5.0
+  min_trajectory_length: 3
+
+# Stage 4b — re-identification across blinking gaps.
+judge:
+  enabled: true
+  model_path: checkpoints/F5.pkl
+  max_time_gap_frames: 120
+  max_start_distance_px: 30.0
+  min_confidence: 0.50
+
+# Detector and optics constants.
+camera:
+  pixelsize_nm: 35.9
+  quantum_efficiency: 0.71
+  collection_efficiency: 0.015
+  gain_electrons_per_count: 0.071
+  frame_rate_hz: 100.0
+
+msd:
+  max_lag_frames: 30                # 0 = use the full trajectory
+
+viz:
+  show_trajectory_plot: false
+  photon_plot_smoothing_window: 5
