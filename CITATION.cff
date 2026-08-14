@@ -36,6 +36,9 @@ identifiers:
   - type: doi
     value: "10.5281/zenodo.20806664"
     description: "Zenodo concept DOI (all versions; resolves to the latest release)"
+  - type: doi
+    value: "10.5281/zenodo.21932550"
+    description: "Zenodo archive of v2.0.0"
   - type: other
     value: "TH-Copyright-465770"
     description: "Thai Copyright Application No. 465770 (19 December 2025)"
