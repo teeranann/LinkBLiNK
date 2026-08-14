@@ -31,8 +31,8 @@ couples proximity-based linking with three machine-learning modules:
 > [Verification](#verification). The original v1.0.x scripts are kept
 > unmodified in [`legacy/`](legacy/).
 
-> **Status.** Code released alongside a manuscript submitted to
-> *Bioinformatics* (under review). Pretrained model weights are bundled in
+> **Status.** Code released alongside a manuscript in preparation for
+> journal submission. Pretrained model weights are bundled in
 > `checkpoints/`. The software is registered as a copyrighted work in Thailand
 > under Application No. 465770 (Burapha University). Source code is released
 > under the MIT License (see [License](#license)).
@@ -291,7 +291,7 @@ environment exactly). MATLAB R2021b is only needed for `.seq` input.
 ## Citation
 
 If you use LinkBLiNK Tracker in academic work, please cite the manuscript
-(submitted to *Bioinformatics*, under review). Until publication, cite the
+(in preparation). Until publication, cite the
 software via the `CITATION.cff` file (GitHub's "Cite this repository" widget)
 or the Zenodo concept DOI
 [10.5281/zenodo.20806664](https://doi.org/10.5281/zenodo.20806664).

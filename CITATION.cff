@@ -40,6 +40,8 @@ identifiers:
     value: "TH-Copyright-465770"
     description: "Thai Copyright Application No. 465770 (19 December 2025)"
 doi: "10.5281/zenodo.20806664"
+version: "2.0.0"
+date-released: "2026-08-14"
 repository-code: "https://github.com/teeranann/LinkBLiNK"
 keywords:
   - single-molecule localization microscopy
@@ -67,4 +69,4 @@ preferred-citation:
     - family-names: Nongnual
       given-names: Teeranan
   year: 2026
-  journal: "Bioinformatics (submitted, under review)"
+  journal: "(manuscript in preparation)"
